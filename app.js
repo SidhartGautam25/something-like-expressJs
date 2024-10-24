@@ -49,48 +49,48 @@ app.listen = function listen() {
 };
 
 app.handle = function handle(req, res, callback) {
-  console.log("app handle method get called and app looks like ", this);
+  //console.log("app handle method get called and app looks like ", this);
   var router = this._router;
-  console.log("app router looks like ", router);
+  //console.log("app router looks like ", router);
   // console.log(" app router is ", router);
-  console.log("router handle method get called ");
+  //console.log("router handle method get called ");
   router.handle(req, res);
 };
 
 methods.forEach(function (method) {
   app[method] = function (path) {
-    console.log("method ", method, " is called for app");
-    console.log(
-      "lazy router has been called my friend and app is ",
-      this._router
-    );
+    //console.log("method ", method, " is called for app");
+    //console.log(
+    //"lazy router has been called my friend and app is ",
+    //this._router
+    //);
     // this and app is diffrent
     this.lazyrouter();
-    console.log("after lazy router app is ", this._router);
+    //console.log("after lazy router app is ", this._router);
 
-    console.log("route.route is called by app ");
+    //console.log("route.route is called by app ");
     var route = this._router.route(path);
-    console.log("route returned by this._router.route looks like ", route);
-    console.log("route.route after effect  on app ", this._router);
-    console.log("stack looks like ", this._router.stack);
-    console.log("route returned after this._router.route looks like ", route);
+    // console.log("route returned by this._router.route looks like ", route);
+    // console.log("route.route after effect  on app ", this._router);
+    // console.log("stack looks like ", this._router.stack);
+    // console.log("route returned after this._router.route looks like ", route);
 
-    console.log("route.get is getting applied ");
+    //console.log("route.get is getting applied ");
     route[method].apply(route, slice.call(arguments, 1));
-    console.log("after getting applied route looks like ", route);
+    //console.log("after getting applied route looks like ", route);
 
-    console.log(
-      "so finally after all these things our app router stack  looks like ",
-      this._router.stack[0]
-    );
-    console.log(
-      "so finally after all these things our app router looks like ",
-      this._router
-    );
-    console.log(
-      "so finally after all these things our app router stack's route looks like ",
-      this._router.stack[0].route
-    );
+    // console.log(
+    //   "so finally after all these things our app router stack  looks like ",
+    //   this._router.stack[0]
+    // );
+    // console.log(
+    //   "so finally after all these things our app router looks like ",
+    //   this._router
+    // );
+    // console.log(
+    //   "so finally after all these things our app router stack's route looks like ",
+    //   this._router.stack[0].route
+    // );
 
     return this;
   };

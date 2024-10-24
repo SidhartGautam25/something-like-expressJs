@@ -11,13 +11,9 @@ function Layer(path, options, fn) {
   this.path = undefined;
 }
 
-Layer.prototype.match = function match(path) {
-  return this.route.path === path;
-};
-
 Layer.prototype.handle_request = function handle(req, res, next) {
-  console.log("layer handle request get called");
-  console.log("this layer lloks like ", this);
+  // console.log("layer handle request get called");
+  // console.log("this layer lloks like ", this);
   var fn = this.handle;
 
   try {
@@ -25,4 +21,8 @@ Layer.prototype.handle_request = function handle(req, res, next) {
   } catch (err) {
     console.error(err);
   }
+};
+
+Layer.prototype.match = function match(path) {
+  return this.route.path === path;
 };
